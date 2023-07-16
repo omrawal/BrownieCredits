@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>This is homepage</h1>
+    <h1>Brownie Credits</h1>
 </body>
 
 </html>
