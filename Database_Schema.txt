@@ -2,6 +2,7 @@
 . employee_id (Primary Key)
 . name
 . email
+. password
 . designation
 . open_credits (giftable points)
 . received_credits (redemable not giftable)
@@ -14,9 +15,9 @@
 . type (T/R) (transaction / redeemption)
 
 
-create table credit_employee (employee_id integer primary key, name varchar(50), email varchar(50), designation varchar(50), open_credits integer, received_credits integer);
-insert into credit_employee (employee_id,name,email,designation,open_credits,received_credits) values (1,'Jane', 'Jane@someone.com','CEO',5,10);
-insert into credit_employee (employee_id,name,email,designation,open_credits,received_credits) values (2,'John', 'John@someone.com','CTO',3,8);
+create table credit_employee (employee_id integer primary key, name varchar(50), email varchar(50),password varchar(64), designation varchar(50), open_credits integer, received_credits integer);
+insert into credit_employee (employee_id,name,email,password,designation,open_credits,received_credits) values (1,'Jane', 'Jane@someone.com','0000','CEO',5,10);
+insert into credit_employee (employee_id,name,email,password,designation,open_credits,received_credits) values (2,'John', 'John@someone.com','0000','CTO',3,8);
 select * from credit_employee ;
 
 

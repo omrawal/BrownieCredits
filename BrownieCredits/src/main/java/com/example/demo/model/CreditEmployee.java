@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import java.security.NoSuchAlgorithmException;
+import com.example.demo.model.HashFunction;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -9,6 +12,7 @@ public class CreditEmployee {
 	private int employee_id;
 	private String name;
 	private String email;
+	private String password;
 	private String designation;
 	private int open_credits;
 	private int received_credits;
@@ -30,6 +34,12 @@ public class CreditEmployee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) throws NoSuchAlgorithmException {
+		this.password = HashFunction.getHashString(password);
+	}
 	public String getDesignation() {
 		return designation;
 	}
@@ -50,8 +60,9 @@ public class CreditEmployee {
 	}
 	@Override
 	public String toString() {
-		return "Credit_Employee [employee_id=" + employee_id + ", name=" + name + ", email=" + email + ", designation="
-				+ designation + ", open_credits=" + open_credits + ", received_credits=" + received_credits + "]";
+		return "CreditEmployee [employee_id=" + employee_id + ", name=" + name + ", email=" + email + ", password="
+				+ password + ", designation=" + designation + ", open_credits=" + open_credits + ", received_credits="
+				+ received_credits + "]";
 	}
 	
 }
