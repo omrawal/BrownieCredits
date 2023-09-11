@@ -10,9 +10,9 @@
 -> credit_transaction
 . trxn_id (Primary key)
 . from_id (sender employee id)
-. to_id (receiver employee id) (in case of redeemption receiver is admin(id = 0))
+. to_id (receiver employee id) (in case of redemption receiver is admin(id = -1))
 . credits
-. type (T/R) (transaction / redeemption)
+. type (T/R) (transaction / redemption)
 
 
 create table credit_employee (employee_id integer primary key, name varchar(50), email varchar(50),password varchar(64), designation varchar(50), open_credits integer, received_credits integer);
@@ -21,8 +21,9 @@ insert into credit_employee (employee_id,name,email,password,designation,open_cr
 select * from credit_employee ;
 
 
-create table credit_transaction (trxn_id integer primary key,from_id integer, to_id integer,credits integer, type char(1));
-insert into credit_transaction (trxn_id ,from_id, to_id,credits, type) values (1,2,1,99,'T');
-insert into credit_transaction (trxn_id ,from_id, to_id,credits, type) values (2,2,0,100,'R');
+create table credit_transaction (trxn_id integer primary key,from_id integer, to_id integer,credits integer, trxn_type char(1), transaction_timestamp varchar(20),trxn_comment varchar(200));
+
+insert into credit_transaction (trxn_id ,from_id, to_id,credits,  trxn_type,transaction_timestamp,trxn_comment) values (1,2,1,99,'T','01-01-2000 12:12:12','Dummy Transaction Comment 1');
+insert into credit_transaction (trxn_id ,from_id, to_id,credits, trxn_type,transaction_timestamp,trxn_comment) values (2,2,0,100,'R','01-01-2000 12:12:12','Dummy Redeemption Comment 1');
 select * from credit_transaction;
 

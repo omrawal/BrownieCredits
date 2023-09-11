@@ -85,6 +85,33 @@ public class BrownieCreditRestController {
 		}
 	}
 	
+	@PostMapping(path = "/createCreditTransaction")
+	public String createCreditTransaction() {
+		return "Not yet implemented";
+		
+		// *** creditEmployee table ***
+		// if from_id and to_id exist
+		// if from_id has the open_credits available to transfer
+		// add them to received credits of to_id
+		
+		// *** creditTransaction table ***
+		// populate all details in transaction table current timestamp and trxn_type = "T"
+	}
+	
+	
+	@PostMapping(path = "/createCreditRedemption")
+	public String createCreditRedemption() {
+		return "Not yet implemented";
+		// *** creditEmployee table ***
+		// if from_id exist
+		// set to_id as -1 for admin's id in case of redemption
+		// if from_id has the received_credits available to redeem
+		// add them to received credits of to_id
+				
+		// *** creditTransaction table ***
+		// populate all details in transaction table current timestamp and trxn_type = "R"
+	}
+	
 	
 	 
 	

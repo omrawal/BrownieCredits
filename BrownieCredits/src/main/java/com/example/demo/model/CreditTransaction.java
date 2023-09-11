@@ -11,7 +11,10 @@ public class CreditTransaction {
 	private int from_id;
 	private int to_id;
 	private int credits;
-	private char type;
+	private char trxn_type;
+//	https://www.javatpoint.com/java-timestamp-compareto-method
+	private String transaction_timestamp;
+	private String trxn_comment;
 	
 	public int getTrxn_id() {
 		return trxn_id;
@@ -37,16 +40,30 @@ public class CreditTransaction {
 	public void setCredits(int credits) {
 		this.credits = credits;
 	}
-	public char getType() {
-		return type;
+	public char getTrxn_type() {
+		return trxn_type;
 	}
-	public void setType(char type) {
-		this.type = type;
+	public void setTrxn_type(char trxn_type) {
+		this.trxn_type = trxn_type;
+	}
+	public String getTrxn_comment() {
+		return trxn_comment;
+	}
+	public void setTrxn_comment(String trxn_comment) {
+		this.trxn_comment = trxn_comment;
+	}
+	public String getTransaction_timestamp() {
+		return transaction_timestamp;
+	}
+	public void setTransaction_timestamp(String transaction_timestamp) {
+		this.transaction_timestamp = transaction_timestamp;
 	}
 	@Override
 	public String toString() {
-		return "Credit_Transaction [trxn_id=" + trxn_id + ", from_id=" + from_id + ", to_id=" + to_id + ", credits="
-				+ credits + ", type=" + type + "]";
+		return "CreditTransaction [trxn_id=" + trxn_id + ", from_id=" + from_id + ", to_id=" + to_id + ", credits="
+				+ credits + ", trxn_type=" + trxn_type + ", transaction_timestamp=" + transaction_timestamp
+				+ ", trxn_comment=" + trxn_comment + "]";
 	}
+	
 	
 }
