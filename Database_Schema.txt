@@ -21,7 +21,7 @@ insert into credit_employee (employee_id,name,email,password,designation,open_cr
 select * from credit_employee ;
 
 
-create table credit_transaction (trxn_id integer primary key,from_id integer, to_id integer,credits integer, trxn_type char(1), transaction_timestamp varchar(20),trxn_comment varchar(200));
+create table credit_transaction (trxn_id integer primary key,from_id integer, to_id integer,credits integer, trxn_type char(1), transaction_timestamp varchar(25),trxn_comment varchar(200));
 
 insert into credit_transaction (trxn_id ,from_id, to_id,credits,  trxn_type,transaction_timestamp,trxn_comment) values (1,2,1,99,'T','01-01-2000 12:12:12','Dummy Transaction Comment 1');
 insert into credit_transaction (trxn_id ,from_id, to_id,credits, trxn_type,transaction_timestamp,trxn_comment) values (2,2,0,100,'R','01-01-2000 12:12:12','Dummy Redeemption Comment 1');

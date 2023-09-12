@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.sql.Timestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -7,7 +9,7 @@ import jakarta.persistence.Id;
 public class CreditTransaction {
 	
 	@Id
-	private int trxn_id;
+	private int trxn_id = -1;
 	private int from_id;
 	private int to_id;
 	private int credits;
@@ -57,6 +59,7 @@ public class CreditTransaction {
 	}
 	public void setTransaction_timestamp(String transaction_timestamp) {
 		this.transaction_timestamp = transaction_timestamp;
+		this.transaction_timestamp = new Timestamp(System.currentTimeMillis()).toString();
 	}
 	@Override
 	public String toString() {
