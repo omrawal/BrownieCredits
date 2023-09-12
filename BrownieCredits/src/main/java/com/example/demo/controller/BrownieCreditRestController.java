@@ -36,19 +36,17 @@ public class BrownieCreditRestController {
 	
 	@PostMapping(path = "/createEmployee")
 	public String createEmployee(@RequestBody CreditEmployee emp) {
-		if(employee_dao.existsById(emp.getEmployee_id())) {
-			return "Employee with employee id " + emp.getEmployee_id() + " Already exists";
+		
+		try {
+			emp.setEmployee_id(employee_dao.getNewEmployeeID());
+			System.out.println(emp);
+			employee_dao.save(emp);
+			return "Employee created Successfully";
 		}
-		else {
-			try {
-				System.out.println(emp);
-				employee_dao.save(emp);
-				return "Employee created Successfully";
-			}
-			catch (Exception exception){
-				return exception.toString();
-			}
+		catch (Exception exception){
+			return exception.toString();
 		}
+		
 		
 	}
 	
@@ -69,6 +67,7 @@ public class BrownieCreditRestController {
 		
 	}
 	
+	// TODO change employee id check by path variable /deleteEmployee/{emp_id} and do not allow employee id change
 	@PutMapping(path = "/updateEmployee")
 	public String updateEmployee(@RequestBody CreditEmployee emp) {
 		if(employee_dao.existsById(emp.getEmployee_id())) {
@@ -87,7 +86,7 @@ public class BrownieCreditRestController {
 	
 	@PostMapping(path = "/createCreditTransaction")
 	public String createCreditTransaction(@RequestBody CreditTransaction creditTransaction) {
-//		return "Not yet implemented";
+
 		System.out.println(creditTransaction);
 		if(creditTransaction.getTrxn_id() == -1) {
 			return "Request body has missing parameters";
@@ -106,6 +105,7 @@ public class BrownieCreditRestController {
 		}
 		// add them to received credits of to_id
 		else {
+			creditTransaction.setTrxn_id(transaction_dao.getNewTransactionID());
 			CreditEmployee sender = employee_dao.getById(creditTransaction.getFrom_id());
 			CreditEmployee receiver = employee_dao.getById(creditTransaction.getTo_id());
 			int credits = creditTransaction.getCredits();
@@ -127,7 +127,6 @@ public class BrownieCreditRestController {
 	@PostMapping(path = "/createCreditRedemption")
 	public String createCreditRedemption(@RequestBody CreditTransaction creditRedemption) {
 		
-//		return "Not yet implemented";
 		System.out.println(creditRedemption);
 		if(creditRedemption.getTrxn_id() == -1) {
 			return "Request body has missing parameters";
@@ -150,7 +149,7 @@ public class BrownieCreditRestController {
 			
 			// *** creditTransaction table ***
 			// set to_id as -1 for admin's id in case of redemption
-			// populate all details in transaction table current timestamp and trxn_type = "R"
+			// populate all details in transaction table current time stamp and trxn_type = "R"
 			creditRedemption.setTo_id(-1);
 			creditRedemption.setTrxn_type('R');
 			transaction_dao.save(creditRedemption);
@@ -160,7 +159,20 @@ public class BrownieCreditRestController {
 		
 	}
 	
+	@GetMapping(path = "/getNextTrxnID")
+	public int getNextTrxnID() {
+		
+		System.out.println("New Transaction id is: "+transaction_dao.getNewTransactionID());
+		
+		return transaction_dao.getNewTransactionID();
+	}
 	
-	 
+	@GetMapping(path = "/getNextEmpID")
+	public int getNextEmpID() {
+		
+		System.out.println("New Employee id is: "+employee_dao.getNewEmployeeID());
+		
+		return employee_dao.getNewEmployeeID();
+	}
 	
 }
