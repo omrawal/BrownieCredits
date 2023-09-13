@@ -159,20 +159,21 @@ public class BrownieCreditRestController {
 		
 	}
 	
-	@GetMapping(path = "/getNextTrxnID")
-	public int getNextTrxnID() {
+	@PostMapping(path = "/createCreditDisbursement/{credits}")
+	public String createCreditDisbursement(@PathVariable int credits) {
+		// disburse credits to all users
+		if(credits <= 0) {
+			return "Credits must be positive";
+		}
+//		employee_dao.disburseCredits(credits);
+		List<Integer>employee_list = employee_dao.getAllEmployeeId();
+		CreditTransaction transaction = new CreditTransaction();
+		//TODO set transaction details here and then set admin as sender to all the employees
 		
-		System.out.println("New Transaction id is: "+transaction_dao.getNewTransactionID());
 		
-		return transaction_dao.getNewTransactionID();
+		
+		return "not yet implemented";
 	}
 	
-	@GetMapping(path = "/getNextEmpID")
-	public int getNextEmpID() {
-		
-		System.out.println("New Employee id is: "+employee_dao.getNewEmployeeID());
-		
-		return employee_dao.getNewEmployeeID();
-	}
 	
 }
