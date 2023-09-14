@@ -68,11 +68,11 @@ public class BrownieCreditRestController {
 		
 	}
 	
-	// TODO change employee id check by path variable /deleteEmployee/{emp_id} and do not allow employee id change
-	@PutMapping(path = "/updateEmployee")
-	public String updateEmployee(@RequestBody CreditEmployee emp) {
-		if(employee_dao.existsById(emp.getEmployee_id())) {
+	@PutMapping(path = "/updateEmployee/{emp_id}")
+	public String updateEmployee(@RequestBody CreditEmployee emp,@PathVariable int emp_id) {
+		if(employee_dao.existsById(emp_id)) {
 			try {
+				emp.setEmployee_id(emp_id);
 				employee_dao.save(emp);
 				return "Employee updated Successfully";
 			}
