@@ -13,7 +13,7 @@ public interface CreditEmployeeDAO extends JpaRepository<CreditEmployee, Integer
 	@Query(value = "select MAX(employee_id)+1 from credit_employee",nativeQuery = true)
 	int getNewEmployeeID();
 	
-	@Query(value = "update credit_employee set open_credits = open_credits + :credit;",nativeQuery = true)
+	@Query(value = "update credit_employee set open_credits = open_credits + :credit",nativeQuery = true)
 	void disburseCredits(@Param("credit") int credit);
 	
 	@Query(value = "select employee_id from credit_employee",nativeQuery = true)

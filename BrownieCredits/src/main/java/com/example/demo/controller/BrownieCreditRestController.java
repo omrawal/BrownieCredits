@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -162,17 +163,29 @@ public class BrownieCreditRestController {
 	@PostMapping(path = "/createCreditDisbursement/{credits}")
 	public String createCreditDisbursement(@PathVariable int credits) {
 		// disburse credits to all users
+		System.out.println("In THe method"+ credits);
 		if(credits <= 0) {
 			return "Credits must be positive";
 		}
 //		employee_dao.disburseCredits(credits);
 		List<Integer>employee_list = employee_dao.getAllEmployeeId();
 		CreditTransaction transaction = new CreditTransaction();
-		//TODO set transaction details here and then set admin as sender to all the employees
+		transaction.setFrom_id(-1);
+		transaction.setCredits(credits);
+		transaction.setTrxn_comment("Disbursement");
+		transaction.setTrxn_type('D');
 		
+		for(int emp_id:employee_list) {
+			transaction.setTrxn_id(transaction_dao.getNewTransactionID());
+			transaction.setTo_id(emp_id);
+			transaction.setTransaction_timestamp(new Timestamp(System.currentTimeMillis()).toString());
+			CreditEmployee curr_emp = employee_dao.getById(emp_id);
+			curr_emp.setOpen_credits(curr_emp.getOpen_credits()+credits);
+			employee_dao.save(curr_emp);
+			transaction_dao.save(transaction);
+		}
 		
-		
-		return "not yet implemented";
+		return "Disbursement Complete";
 	}
 	
 	
