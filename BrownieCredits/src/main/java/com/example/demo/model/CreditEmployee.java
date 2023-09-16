@@ -6,6 +6,14 @@ import com.example.demo.model.HashFunction;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+/**
+ * 
+ * This class refers to the table credit_employee which contains details of the employee
+ * @author omrawal
+ *
+ */
+
+
 @Entity(name = "credit_employee")
 public class CreditEmployee {
 	@Id

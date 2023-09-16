@@ -167,7 +167,6 @@ public class BrownieCreditRestController {
 		if(credits <= 0) {
 			return "Credits must be positive";
 		}
-//		employee_dao.disburseCredits(credits);
 		List<Integer>employee_list = employee_dao.getAllEmployeeId();
 		CreditTransaction transaction = new CreditTransaction();
 		transaction.setFrom_id(-1);

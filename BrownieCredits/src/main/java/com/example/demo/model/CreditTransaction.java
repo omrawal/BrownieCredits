@@ -5,6 +5,15 @@ import java.sql.Timestamp;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+/**
+ * 
+ * This class refers to the table credit_transaction that stored all transaction of credits
+ * including Disbursement, Redemption and Transaction 
+ * @author omrawal
+ *
+ */
+
+
 @Entity(name = "credit_transaction")
 public class CreditTransaction {
 	
@@ -14,7 +23,6 @@ public class CreditTransaction {
 	private int to_id;
 	private int credits;
 	private char trxn_type;
-//	https://www.javatpoint.com/java-timestamp-compareto-method
 	private String transaction_timestamp;
 	private String trxn_comment;
 	
