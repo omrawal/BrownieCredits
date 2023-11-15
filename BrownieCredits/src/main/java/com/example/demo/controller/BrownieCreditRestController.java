@@ -35,6 +35,12 @@ public class BrownieCreditRestController {
 		return transaction_dao.findAll();
 	}
 	
+	@GetMapping(path = "/getUserTransactions/{emp_id}")
+	public List<CreditTransaction>getUserTransactions(@PathVariable int emp_id){
+		return transaction_dao.getUserTransactionById(emp_id);
+	}
+	
+	
 	@PostMapping(path = "/createEmployee")
 	public String createEmployee(@RequestBody CreditEmployee emp) {
 		
