@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "02035221-65fb-479a-a142-885e19cbf65d",
+		"name": "BrownieCredits",
+		"description": "This is an employee credit management application Backend API.  \nHere employees get certain credits called \"Brownie Credits\" which they can gift their coworkers as Kudos/Appreciation.  \nEmployees can redeem only the credits they have received as gifts.\n\nBackend link : [https://github.com/omrawal/BrownieCredits](https://github.com/omrawal/BrownieCredits)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31098272"
+	},
+	"item": [
+		{
+			"name": "All Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8090/getAllTransactions"
+			},
+			"response": []
+		},
+		{
+			"name": "All Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8090/getAllEmployees"
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction by emp id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8090/getUserTransactions/4"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"employee_id\" : 123,\r\n\t\"name\" : \"John Doe\",\r\n\t\"email\" : \"JohnDoe@example.com\",\r\n\t\"password\" : \"John@123Doe\",\r\n\t\"designation\" : \"CEO\",\r\n\t\"open_credits\" : 99,\r\n\t\"received_credits\" : 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8090/createEmployee"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8090/deleteEmployee/7"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"employee_id\" : 123,\r\n\t\"name\" : \"John Doe Updated\",\r\n\t\"email\" : \"JohnDoeUpdated@example.com\",\r\n\t\"password\" : \"John@123Doe\",\r\n\t\"designation\" : \"CEO\",\r\n\t\"open_credits\" : 99,\r\n\t\"received_credits\" : 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8090/updateEmployee/7"
+			},
+			"response": []
+		},
+		{
+			"name": "Send credits",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"trxn_id\":1,\r\n\t\"from_id\":2,\r\n\t\"to_id\":1,\r\n\t\"credits\":5,\r\n\t\"trxn_type\":\"T\",\r\n\t\"transaction_timestamp\":\"\",\r\n\t\"trxn_comment\":\"Dummy Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8090/createCreditTransaction"
+			},
+			"response": []
+		},
+		{
+			"name": "Redeem Credits",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"trxn_id\":1,\r\n\t\"from_id\":2,\r\n\t\"to_id\":-1,\r\n\t\"credits\":4,\r\n\t\"trxn_type\":\"R\",\r\n\t\"transaction_timestamp\":\"\",\r\n\t\"trxn_comment\":\"Redeemption Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8090/createCreditRedemption"
+			},
+			"response": []
+		},
+		{
+			"name": "Credit Disbursement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8090/createCreditDisbursement/99"
+			},
+			"response": []
+		}
+	]
+}
