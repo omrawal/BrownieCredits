@@ -48,7 +48,7 @@ public class BrownieCreditRestController {
 			emp.setEmployee_id(employee_dao.getNewEmployeeID());
 			System.out.println(emp);
 			employee_dao.save(emp);
-			return "Employee created Successfully";
+			return "Employee Created Successfully";
 		}
 		catch (Exception exception){
 			return exception.toString();
@@ -62,14 +62,14 @@ public class BrownieCreditRestController {
 		if(employee_dao.existsById(emp_id)) {
 			try {
 				employee_dao.deleteById(emp_id);
-				return "Employee deleted Successfully";
+				return "Employee Deleted Successfully";
 			}
 			catch (Exception exception){
 				return exception.toString();
 			}
 		}
 		else {
-			return "Employee with employee id "+emp_id+ " does not exist";
+			return "Employee with Employee ID "+emp_id+ " does not exist";
 		}
 		
 	}
@@ -80,14 +80,14 @@ public class BrownieCreditRestController {
 			try {
 				emp.setEmployee_id(emp_id);
 				employee_dao.save(emp);
-				return "Employee updated Successfully";
+				return "Employee Updated Successfully";
 			}
 			catch (Exception exception){
 				return exception.toString();
 			}
 		}
 		else {
-			return "Employee with employee id "+emp.getEmployee_id()+ " does not exist";
+			return "Employee with Employee ID "+emp.getEmployee_id()+ " does Not Exist";
 		}
 	}
 	
@@ -108,7 +108,7 @@ public class BrownieCreditRestController {
 		}
 		// if from_id has the open_credits available to transfer
 		else if(employee_dao.getById(creditTransaction.getFrom_id()).getOpen_credits() < creditTransaction.getCredits()){
-			return "User has insufficient credits to transfer";
+			return "User has Insufficient Credits to Transfer";
 		}
 		// add them to received credits of to_id
 		else {
@@ -125,7 +125,7 @@ public class BrownieCreditRestController {
 			creditTransaction.setTrxn_type('T');
 			
 			transaction_dao.save(creditTransaction);
-			return "Transaction successful";
+			return "Transaction Successful";
 		}
 		
 	}
@@ -145,7 +145,7 @@ public class BrownieCreditRestController {
 		}
 		// if from_id has the received_credits available to redeem
 		else if(employee_dao.getById(creditRedemption.getFrom_id()).getReceived_credits() < creditRedemption.getCredits()){
-			return "User has insufficient credits to redeem";
+			return "User has Insufficient Credits to Redeem";
 		}
 		// add them to received credits of to_id
 		else {
@@ -160,7 +160,7 @@ public class BrownieCreditRestController {
 			creditRedemption.setTo_id(-1);
 			creditRedemption.setTrxn_type('R');
 			transaction_dao.save(creditRedemption);
-			return "Redemption successful";
+			return "Redemption Successful";
 			
 		}	
 		
