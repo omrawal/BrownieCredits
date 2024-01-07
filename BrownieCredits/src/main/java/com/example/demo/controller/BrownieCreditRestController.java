@@ -25,23 +25,23 @@ public class BrownieCreditRestController {
 	@Autowired
 	CreditTransactionDAO transaction_dao;
 	
-	@GetMapping(path = "/getAllEmployees")
+	@GetMapping(path = "/employees")
 	public List<CreditEmployee>getAllEmployees(){
 		return employee_dao.findAll();
 	}
 	
-	@GetMapping(path = "/getAllTransactions")
+	@GetMapping(path = "/transactions")
 	public List<CreditTransaction>getAllTransactions(){
 		return transaction_dao.findAll();
 	}
 	
-	@GetMapping(path = "/getUserTransactions/{emp_id}")
+	@GetMapping(path = "/transactions/{emp_id}")
 	public List<CreditTransaction>getUserTransactions(@PathVariable int emp_id){
 		return transaction_dao.getUserTransactionById(emp_id);
 	}
 	
 	
-	@PostMapping(path = "/createEmployee")
+	@PostMapping(path = "/employees")
 	public String createEmployee(@RequestBody CreditEmployee emp) {
 		
 		try {
@@ -57,7 +57,7 @@ public class BrownieCreditRestController {
 		
 	}
 	
-	@DeleteMapping(path = "/deleteEmployee/{emp_id}")
+	@DeleteMapping(path = "/employees/{emp_id}")
 	public String deleteEmployee(@PathVariable int emp_id) {
 		if(employee_dao.existsById(emp_id)) {
 			try {
@@ -74,7 +74,7 @@ public class BrownieCreditRestController {
 		
 	}
 	
-	@PutMapping(path = "/updateEmployee/{emp_id}")
+	@PutMapping(path = "/employees/{emp_id}")
 	public String updateEmployee(@RequestBody CreditEmployee emp,@PathVariable int emp_id) {
 		if(employee_dao.existsById(emp_id)) {
 			try {
